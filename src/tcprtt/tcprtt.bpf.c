@@ -20,14 +20,14 @@ int BPF_PROG(tcp_rcv, struct sock *sk)
     if (sk->__sk_common.skc_family != AF_INET)
         return 0;
 
-    struct event *e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
+    // FIXME: Reserve space in ring buffer `rb` for the event `e`
+    // struct event *e = ... ;
     if (!e)
         return 0;
 
-    // TODO: 從socket中取得對應的資料，並填入event的下面三個變數。
-    e->saddr = 
-    e->daddr = 
-    e->sport = 
+    e->saddr = sk->__sk_common.skc_rcv_saddr;
+    e->daddr = sk->__sk_common.skc_daddr;
+    e->sport = sk->__sk_common.skc_num;
     e->dport = bpf_ntohs(sk->__sk_common.skc_dport);
 
 	// u32	srtt_us;	/* smoothed round trip time << 3 in usecs */
@@ -37,7 +37,8 @@ int BPF_PROG(tcp_rcv, struct sock *sk)
     e->pid = bpf_get_current_pid_tgid() >> 32;
     bpf_get_current_comm(&e->comm, sizeof(e->comm));
 
-    bpf_ringbuf_submit(e, 0);
+    // FIXME: Submit your event `e` to ring buffer `rb`
+    // ...
     return 0;
 }
 

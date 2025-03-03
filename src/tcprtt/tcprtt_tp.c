@@ -41,7 +41,8 @@ int main() {
         goto destroy;
     }
 
-    struct ring_buffer *rb = ring_buffer__new(bpf_map__fd(skel->maps.rb), callback, NULL, NULL);
+    // FIXME: Initialize a new ring buffer `rb`
+    // struct ring_buffer *rb = ... ;
     if (!rb) {
         perror("ringbuf create");
         goto destroy;
@@ -49,7 +50,8 @@ int main() {
 
     printf("%-7s %-16s %-23s     %-23s %s\n", "PID", "COMM", "SRC", "DST", "LAT(ms)");
     while (cont) {
-        err = ring_buffer__poll(rb, 10000);
+        // FIXME: Poll the ring buffer
+        // err = ... ;
         if (err < 0 && err != -EINTR) {
             perror("ringbuf poll");
             goto destroy;

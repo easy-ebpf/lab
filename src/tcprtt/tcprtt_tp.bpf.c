@@ -22,37 +22,41 @@ struct {
 SEC("tracepoint/sock/inet_sock_set_state")
 int handle_set_state(struct trace_event_raw_inet_sock_set_state *ctx)
 {
-	// handle ipv4 only
+    // handle ipv4 only
 	if (ctx->family != AF_INET)
-		return 0;
+        return 0;
 
-	u64 curr = bpf_ktime_get_ns();
+    u64 curr = bpf_ktime_get_ns();
 	struct sock *sk = (struct sock *)ctx->skaddr;
-
-	// TODO: 加入下面三種state的判斷: TCP_ESTABLISHED, TCP_SYN_RECV, TCP_SYN_SENT
-	if (ctx->newstate == /* TODO */ &&
-		(ctx->oldstate == /* TODO */ || ctx->oldstate == /* TODO */)) {
-		u64 *prev = bpf_map_lookup_elem(&record, &sk);
+    if (ctx->newstate == TCP_ESTABLISHED &&
+		(ctx->oldstate == TCP_SYN_RECV || ctx->oldstate == TCP_SYN_SENT)) {
+	// FIXME: Look up the element with key of `sk` in the hash map `record`
+    	// u64 *prev = 
 		if (prev) {
-			struct event *e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
+			// FIXME: Reserve space in the ring buffer `rb` for your event `e`
+			// struct event *e = ... ;
 			if (e) {
 				bpf_core_read(&e->saddr, sizeof(e->saddr), &ctx->saddr); 
-				// 用跟前一行同樣的方式取得下面三樣資料(從context ctx到event e)
-				// daddr, sport, dport
+				bpf_core_read(&e->daddr, sizeof(e->daddr), &ctx->daddr); 
+				e->sport = ctx->sport;
+				e->dport = ctx->dport;
 
 				e->rtt = (curr - *prev) / 1000;
 
 				e->pid = bpf_get_current_pid_tgid() >> 32;
 				bpf_get_current_comm(&e->comm, sizeof(e->comm));
-				bpf_ringbuf_submit(e, 0);
+				// FIXME: Submit your event `e` to ring buffer `rb`
+				// ...
 			}
 		}
 	}
 
 	if (ctx->newstate == TCP_CLOSE) {
-		bpf_map_delete_elem(&record, &sk);
+		// FIXME: delete the element of key `sk` from hash map `record`
+		// ... ;
 	} else {
-		bpf_map_update_elem(&record, &sk, &curr, BPF_ANY);
+		// FIXME: update the element of key `sk` from hash map `record`
+		// ... ;
 	}
 	return 0;
 }
