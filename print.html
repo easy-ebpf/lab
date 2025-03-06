@@ -323,25 +323,31 @@ minimal: minimal.c minimal.skel.h
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lab-1-操作和觀察-minimal-和-verifier"><a class="header" href="#lab-1-操作和觀察-minimal-和-verifier">Lab 1： 操作和觀察 minimal 和 verifier</a></h1>
 <ul>
 <li>
-<p>如果你的電腦還沒有設定好eBPF的編譯工具，請參考<a href="https://github.com/easy-ebpf/practice_vm">這裡</a>設定好你的環境。</p>
+<p>如果你的電腦還沒有設定好eBPF的編譯工具，請參考<a href="https://github.com/easy-ebpf/practice_vm">這裡</a>設定好你的環境，並下載範例程式碼:</p>
+<pre><code class="language-shell">git clone https://github.com/easy-ebpf/lab
+</code></pre>
 </li>
 <li>
 <p>練習1: 建置 minimal 和觀察程式運行</p>
 <ul>
-<li><code>make minimal</code> 建置執行檔，然後用 <code>sudo ./minimal</code> 執行</li>
-<li>查看 eBPF 輸出訊息</li>
-</ul>
+<li>
+<p><code>make minimal</code> 建置執行檔，然後用 <code>sudo ./minimal</code> 執行</p>
+</li>
+<li>
+<p>查看 eBPF 輸出訊息</p>
 <pre><code class="language-shell">$ sudo cat /sys/kernel/debug/tracing/trace_pipe
     &lt;...&gt;-3840345 [010] d... 3220701.101143: bpf_trace_printk: BPF triggered from PID 3840345.
     &lt;...&gt;-3840345 [010] d... 3220702.101265: bpf_trace_printk: BPF triggered from PID 3840345.
 </code></pre>
-<ul>
-<li>查看當前附著的程式</li>
-</ul>
+</li>
+<li>
+<p>查看當前附著的程式</p>
 <pre><code class="language-shell">$ sudo bpftool perf show
 pid 232272  fd 17: prog_id 394  kprobe  func do_execve  offset 0
 pid 232272  fd 19: prog_id 396  tracepoint  sys_enter_execve
 </code></pre>
+</li>
+</ul>
 </li>
 <li>
 <p>練習2:註解核心程式的 license 聲明，觀察 verifier 驗證不通過時的 log 提示</p>
@@ -594,7 +600,7 @@ struct sock_common {
 <p>練習1：使用 ring buffer 開發，完成 <strong>tcprtt.c</strong> 和 <strong>tcprtt.bpf.c</strong> 程式</p>
 </li>
 <li>
-<p>練習2：確認輸出的 ip、port 數值正確
+<p>練習2：確認輸出的 ip、port 數值正確<br />
 在本機可以透過命令列工具簡單製造 tcp 連線</p>
 <pre><code class="language-shell"># server
 $ python3 -m http.server
