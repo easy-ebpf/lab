@@ -34,6 +34,6 @@
 </div>
 
 - <strong>回答問題</strong>:
-  - eBPF相較於kernel module的差異在哪裡? <strong>(5 points)</strong>
-  - 參考[這裡](https://docs.kernel.org/bpf/bpf_licensing.html#using-bpf-programs-in-the-linux-kernel)，並回答為什麼註解掉license聲明就會導致不通過verifier的驗證? <strong>(5 points)</strong>
-  - 參考[這裡](https://docs.kernel.org/bpf/verifier.html)，並回答linux kernel使用verifier檢查了eBPF程式的哪些面向來確保eBPF程式的安全性? <strong>(5 points)</strong>
+  - 1. eBPF相較於kernel module的差異在哪裡? <strong>(5 points)</strong>
+  - 2. 參考[這裡](https://docs.kernel.org/bpf/bpf_licensing.html#using-bpf-programs-in-the-linux-kernel)，並回答為什麼註解掉license聲明就會導致不通過verifier的驗證? <strong>(5 points)</strong>
+  - 3. 參考[這裡](https://docs.kernel.org/bpf/verifier.html)，並回答linux kernel使用verifier檢查了eBPF程式的哪些面向來確保eBPF程式的安全性? <strong>(5 points)</strong>
