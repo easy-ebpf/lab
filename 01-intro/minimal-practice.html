@@ -186,16 +186,19 @@
 <p>如果你在資電館三樓的電腦教室，桌面應該已經有vm映像檔可以直接匯入，不用再下載一次。</p>
 </li>
 <li>
-<p>練習1: 建置 minimal 和觀察程式運行</p>
+<p>練習1: 建置 minimal 和觀察程式運行。</p>
 <ul>
+<li>
+<p>修改<code>src/minimal/minimal.bpf.c</code>中的TODO，將<code>STUDENT_ID</code>換成你自己的學號。</p>
+</li>
 <li>
 <p><code>make minimal</code> 建置執行檔，然後用 <code>sudo ./minimal</code> 執行</p>
 </li>
 <li>
 <p>查看 eBPF 輸出訊息</p>
 <pre><code class="language-shell">$ sudo cat /sys/kernel/debug/tracing/trace_pipe
-    &lt;...&gt;-3840345 [010] d... 3220701.101143: bpf_trace_printk: BPF triggered from PID 3840345.
-    &lt;...&gt;-3840345 [010] d... 3220702.101265: bpf_trace_printk: BPF triggered from PID 3840345.
+    &lt;...&gt;-3840345 [010] d... 3220701.101143: bpf_trace_printk: BPF triggered from PID 3840345 by 113062595.
+    &lt;...&gt;-3840345 [010] d... 3220702.101265: bpf_trace_printk: BPF triggered from PID 3840345 by 113062595.
 </code></pre>
 </li>
 <li>
@@ -207,8 +210,23 @@ pid 232272  fd 19: prog_id 396  tracepoint  sys_enter_execve
 </li>
 </ul>
 </li>
-<li>
-<p>練習2:註解核心程式的 license 聲明，觀察 verifier 驗證不通過時的 log 提示</p>
+</ul>
+<div class="warning">
+    <strong>Note:</strong> 請截圖上方指令的執行畫面，並截圖附在報告中。 <strong>(15 points)</strong>
+</div>
+<ul>
+<li>練習2:註解核心程式的 license 聲明，觀察 verifier 驗證不通過時的 log 提示並截圖。</li>
+</ul>
+<div class="warning">
+    <strong>Note:</strong> 請截圖上方的執行失敗畫面，並截圖附在報告中。 <strong>(10 points)</strong>
+</div>
+<ul>
+<li><strong>回答問題</strong>:
+<ul>
+<li>eBPF相較於kernel module的差異在哪裡? <strong>(5 points)</strong></li>
+<li>參考<a href="https://docs.kernel.org/bpf/bpf_licensing.html#using-bpf-programs-in-the-linux-kernel">這裡</a>，並回答為什麼註解掉license聲明就會導致不通過verifier的驗證? <strong>(5 points)</strong></li>
+<li>參考<a href="https://docs.kernel.org/bpf/verifier.html">這裡</a>，並回答linux kernel使用verifier檢查了eBPF程式的哪些面向來確保eBPF程式的安全性? <string>(5 points)</strong></li>
+</ul>
 </li>
 </ul>
 
