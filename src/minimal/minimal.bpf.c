@@ -15,7 +15,8 @@ int handle_tp(void *ctx)
 	if (pid != my_pid)
 		return 0;
 
-	bpf_printk("BPF triggered from PID %d.\n", pid);
+	// TODO: 把STUDENT_ID換成你的學號
+	bpf_printk("BPF triggered from PID %d by STUDENT_ID.\n", pid);
 
 	return 0;
 }
