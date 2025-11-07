@@ -4,7 +4,7 @@
     ```shell
     git clone https://github.com/easy-ebpf/lab
     ```
-- 如果你在資電館三樓的電腦教室，桌面應該已經有vm映像檔可以直接匯入，不用再下載一次。
+- 如果你在資電館三樓的電腦教室，桌面應該已經有vm映像檔可以直接匯入，不用再下載一次，但請一樣clone最新的程式碼。
 
 - 練習1: 建置 minimal 和觀察程式運行。
     - 修改`src/minimal/minimal.bpf.c`中的TODO，將`STUDENT_ID`換成你自己的學號。
