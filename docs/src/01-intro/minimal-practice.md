@@ -13,7 +13,7 @@
         ```bash
         sudo cat /sys/kernel/debug/tracing/trace_pipe
         ```
-        <img width="1569" height="387" alt="image" src="https://github.com/user-attachments/assets/a221ef32-59b7-4b17-9f7a-07d9794c7031" />
+        <img width="1569" alt="image" src="https://github.com/user-attachments/assets/a221ef32-59b7-4b17-9f7a-07d9794c7031" />
 
 
     - 查看當前附著的程式
