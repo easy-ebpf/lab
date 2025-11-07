@@ -1,6 +1,6 @@
 # Lab 1： 操作和觀察 minimal 和 verifier 
 
-- 如果你的電腦還沒有設定好eBPF的編譯工具，請參考[這裡](https://github.com/easy-ebpf/practice_vm)設定好你的環境，並下載範例程式碼:
+- 如果你的電腦還沒有設定好eBPF的編譯工具，請參考[這裡](https://github.com/easy-ebpf/practice_vm)設定好你的環境，並下載最新版本的範例程式碼:
     ```shell
     git clone https://github.com/easy-ebpf/lab
     ```
@@ -9,21 +9,20 @@
 - 練習1: 建置 minimal 和觀察程式運行。
     - 修改`src/minimal/minimal.bpf.c`中的TODO，將`STUDENT_ID`換成你自己的學號。
     - `make minimal` 建置執行檔，然後用 `sudo ./minimal` 執行
-    - 查看 eBPF 輸出訊息
-
-        ```shell
-        $ sudo cat /sys/kernel/debug/tracing/trace_pipe
-            <...>-3840345 [010] d... 3220701.101143: bpf_trace_printk: BPF triggered from PID 3840345 by 113062595.
-            <...>-3840345 [010] d... 3220702.101265: bpf_trace_printk: BPF triggered from PID 3840345 by 113062595.
+    - 打開新的terminal視窗/分頁，查看 eBPF 輸出訊息
+        ```bash
+        sudo cat /sys/kernel/debug/tracing/trace_pipe
         ```
+        <img width="1569" height="387" alt="image" src="https://github.com/user-attachments/assets/a221ef32-59b7-4b17-9f7a-07d9794c7031" />
+
 
     - 查看當前附著的程式
-
-        ```shell
-        $ sudo bpftool perf show
-        pid 232272  fd 17: prog_id 394  kprobe  func do_execve  offset 0
-        pid 232272  fd 19: prog_id 396  tracepoint  sys_enter_execve
+        ```bash
+        sudo bpftool perf show
         ```
+        <img width="594" height="494" alt="image" src="https://github.com/user-attachments/assets/58a8b4e5-6f64-46ef-b9fb-b2d43df22787" />
+
+        
 <div class="warning">
     <strong>Note:</strong> 請截圖上方指令的執行畫面，並截圖附在報告中。 <strong>(15 points)</strong>
 </div>
