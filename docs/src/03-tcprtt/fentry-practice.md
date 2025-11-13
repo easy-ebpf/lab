@@ -12,6 +12,5 @@
     $ curl 0.0.0.0:8000
     ```
 <div class="warning">
-    <strong>Note:</strong> 請截圖上方的執行畫面並放入報告中。 <strong>(15 points)</strong>
+    <strong>Note:</strong> 請截圖上方的執行畫面並放入報告中。 <strong>(30 points)</strong>
 </div>
-
